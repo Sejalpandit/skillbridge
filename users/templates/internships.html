@@ -1,0 +1,51 @@
+<form method="get">
+    <input type="text" name="q" placeholder="Search internships">
+    <button type="submit">Search</button>
+</form>
+
+<h2>Welcome, {{ request.user.username }}</h2>
+
+<a href="/my-applications/">My Applications</a> |
+<a href="/logout/">Logout</a>
+
+<hr>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Internships</title>
+    <style>
+body {
+    font-family: Arial;
+    margin: 20px;
+}
+button {
+    background-color: green;
+    color: white;
+    padding: 5px 10px;
+}
+</style>
+</head>
+<body>
+
+<h1>Available Internships</h1>
+
+{% for internship in internships %}
+    <div style="border:1px solid black; padding:10px; margin:10px;">
+        <h2>{{ internship.title }}</h2>
+        <p><b>Company:</b> {{ internship.company }}</p>
+        <p><b>Description:</b> {{ internship.description }}</p>
+        <p><b>Skills:</b> {{ internship.skills_required }}</p>
+        <p><b>Deadline:</b> {{ internship.deadline }}</p>
+
+{% if internship.id in applied_ids %}
+    <button disabled>Applied</button>
+{% else %}
+    <a href="/apply/{{ internship.id }}/">
+        <button>Apply</button>
+    </a>
+{% endif %}
+    </div>
+{% endfor %}
+
+</body>
+</html>

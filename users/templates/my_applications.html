@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Applications</title>
+</head>
+<body>
+
+<h1>My Applied Internships</h1>
+
+{% for app in applications %}
+    <div style="border:1px solid black; padding:10px; margin:10px;">
+        <h2>{{ app.internship.title }}</h2>
+        <p><b>Company:</b> {{ app.internship.company }}</p>
+        <p><b>Applied on:</b> {{ app.applied_date }}</p>
+    </div>
+{% endfor %}
+
+</body>
+</html>
